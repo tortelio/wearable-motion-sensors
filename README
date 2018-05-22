@@ -1,0 +1,39 @@
+# Get Julia from (https://julialang.org/downloads/)
+# On Linux: https://julialang-s3.julialang.org/bin/linux/x64/0.6/julia-0.6.2-linux-x86_64.tar.gz
+# On Windows: https://julialang-s3.julialang.org/bin/winnt/x64/0.6/julia-0.6.2-win64.exe
+
+# Install julia
+# On Linux:
+tar xfv julia-0.6.2-linux-x86_64.tar.gz
+echo 'export PATH=$PWD/julia-d387e41c17/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+# On Windows run the downloaded installer (.exe file) then execute
+set PATH=%PATH%;"C:\Program Files\Julia-0.6.2\bin"
+
+# Install libraries
+# Start Julia REPL
+julia
+
+# Initialize directory for julia libraries, by default to ~/julia/v0.6
+julia> Pkg.init()
+
+# Install Plotly
+julia> Pkg.add("Plotly")
+julia> Blink.AtomShell.install()
+
+# Test Plotly
+julia> using Plotly
+julia> plot(scatter(y=[1,2,3])) # should draw a line
+
+# Possible fixing command in terminal
+$JULIA_PKGDIR/Blink/deps/atom/electron  $JULIA_PKGDIR/Blink/src/AtomShell/main.js port 8100 &
+
+# Install Flux
+julia> Pkg.add("Flux")
+
+# Get Julia highlight for your favourite text editor
+
+# Get dataset
+git clone https://github.com/tortelio/wearable-motion-sensors.git
+cd wearable-motion-sensors
+unzip wearable-motion-sensors.zip
